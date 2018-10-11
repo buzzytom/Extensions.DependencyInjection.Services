@@ -41,37 +41,22 @@ namespace Extensions.DependencyInjection.Services
                     DeclaringType = x
                 })
                 .Where(x => x.Attribute != null)
-                .Select(x => new ServiceDeclaration(x.Attribute, x.DeclaringType));
+                .Select(x => new ServiceDeclaration(x.Attribute.Type, x.DeclaringType, x.Attribute.Scope));
         }
 
         public static void AddService(this IServiceCollection services, ServiceDeclaration declaration)
         {
+            if (services == null)
+                throw new ArgumentNullException(nameof(services));
             if (declaration == null)
                 throw new ArgumentNullException(nameof(declaration));
 
-            services.AddService(declaration.Attribute.Type, declaration.DeclaringType, declaration.Attribute.Scope);
-        }
-
-        public static void AddService(this IServiceCollection services, Type serviceType, Type implementationType, ServiceScope scope = ServiceScope.Transient)
-        {
-            if (services == null)
-                throw new ArgumentNullException(nameof(services));
-            if (serviceType == null)
-                throw new ArgumentNullException(nameof(serviceType));
-            if (implementationType == null)
-                throw new ArgumentNullException(nameof(implementationType));
-
-            if (!serviceType.IsAssignableFrom(implementationType))
-                throw new Exception($"The class {implementationType.Name} has a {nameof(ServiceAttribute)} for a type which it cannot be assigned to: '{serviceType.Name}'.");
-
-            if (scope == ServiceScope.Scoped)
-                services.AddScoped(serviceType, implementationType);
-            else if (scope == ServiceScope.Transient)
-                services.AddTransient(serviceType, implementationType);
-            else if (scope == ServiceScope.Singleton)
-                services.AddSingleton(serviceType, implementationType);
-            else
-                throw new Exception($"Unkown service scope '{scope}' for type '{implementationType.Name}'.");
+            if (declaration.Scope == ServiceScope.Scoped)
+                services.AddScoped(declaration.ServiceType, declaration.DeclaringType);
+            else if (declaration.Scope == ServiceScope.Transient)
+                services.AddTransient(declaration.ServiceType, declaration.DeclaringType);
+            else if (declaration.Scope == ServiceScope.Singleton)
+                services.AddSingleton(declaration.ServiceType, declaration.DeclaringType);
         }
     }
 }
