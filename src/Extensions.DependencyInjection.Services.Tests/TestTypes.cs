@@ -8,6 +8,7 @@
     {
     }
 
+    [Service(typeof(ITestInterface), ServiceScope.Transient)]
     public class TestImplementation : ATestImplementation
     {
     }
