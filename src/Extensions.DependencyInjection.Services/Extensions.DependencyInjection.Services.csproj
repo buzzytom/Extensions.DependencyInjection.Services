@@ -14,8 +14,9 @@
     <RepositoryUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services</RepositoryUrl>
     <RepositoryType />
     <PackageTags>Extensions Dependency Injection Services Asp Net Core Net Standard</PackageTags>
-    <PackageReleaseNotes>Initial release. View the project url for more information.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added intellisense comments.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
