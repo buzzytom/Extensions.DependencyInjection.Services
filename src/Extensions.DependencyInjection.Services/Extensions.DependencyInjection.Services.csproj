@@ -2,6 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Buzzytom.Extensions.DependencyInjection.Services</PackageId>
+    <Authors>Thomas Williams</Authors>
+    <Company>Thomas Williams</Company>
+    <Description>An extension for Microsoft.Extensions.DependencyInjection allowing classes to be decorated with [Service] for quick and easy dependency registration.</Description>
+    <Copyright>© Thomas Williams 2018</Copyright>
+    <PackageLicenseUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services/src/Extensions.DependencyInjection.Services</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services</RepositoryUrl>
+    <RepositoryType />
+    <PackageTags>Extensions Dependency Injection Services Asp Net Core Net Standard</PackageTags>
+    <PackageReleaseNotes>Initial release. View the project url for more information.</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
