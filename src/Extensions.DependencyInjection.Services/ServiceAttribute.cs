@@ -5,7 +5,7 @@ namespace Extensions.DependencyInjection.Services
     /// <summary>
     /// Specifies the class being attributed should be registered for dependency injection.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
     public class ServiceAttribute : Attribute
     {
         /// <summary>
