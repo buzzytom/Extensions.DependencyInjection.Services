@@ -51,15 +51,16 @@ namespace Extensions.DependencyInjection.Services
             if (assembly == null)
                 throw new ArgumentNullException(nameof(assembly));
 
-            return assembly
-                .GetExportedTypes()
-                .Select(x => new
-                {
-                    Attribute = (ServiceAttribute)x.GetCustomAttribute(typeof(ServiceAttribute)),
-                    DeclaringType = x
-                })
-                .Where(x => x.Attribute != null)
-                .Select(x => new ServiceDeclaration(x.Attribute.Type, x.DeclaringType, x.Attribute.Scope));
+            List<ServiceDeclaration> serviceDeclarations = new List<ServiceDeclaration>();
+            Type[] types = assembly.GetExportedTypes();
+            foreach (Type type in types)
+            {
+                ServiceAttribute serviceAttribute = (ServiceAttribute)type.GetCustomAttribute(typeof(ServiceAttribute));
+                if (serviceAttribute != null)
+                    serviceDeclarations.Add(new ServiceDeclaration(serviceAttribute.Type, type, serviceAttribute.Scope));
+            }
+
+            return serviceDeclarations;
         }
 
         /// <summary>
