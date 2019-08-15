@@ -7,7 +7,7 @@ namespace Extensions.DependencyInjection.Services.Tests
     [TestFixture]
     public class GivenGetServiceDeclarationsIsInvokedWithAnAssembly
     {
-        private ServiceDeclaration result = null;
+        private ServiceDeclaration[] result = null;
 
         [OneTimeSetUp]
         public void Setup()
@@ -16,15 +16,29 @@ namespace Extensions.DependencyInjection.Services.Tests
 
             result = ServiceExtensions
                 .GetServiceDeclarations(assembly)
-                .Single();
+                .ToArray();
         }
 
         [Test]
-        public void ThenTheServiceDescriptorIsReturned()
+        public void ThenAServiceIsReturnedForEveryServiceAttributeOnTheClass()
         {
-            Assert.AreEqual(typeof(TestImplementation), result.DeclaringType);
-            Assert.AreEqual(typeof(ITestInterface), result.ServiceType);
-            Assert.AreEqual(ServiceScope.Transient, result.Scope);
+            Assert.That(result.Length, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void ThenTheTestImplementationServiceDescriptorIsReturned()
+        {
+            ServiceDeclaration serviceDeclaration = result.Single(x => x.ServiceType == typeof(ITestInterface));
+            Assert.That(serviceDeclaration.DeclaringType, Is.EqualTo(typeof(TestImplementation)));
+            Assert.That(serviceDeclaration.Scope, Is.EqualTo(ServiceScope.Transient));
+        }
+
+        [Test]
+        public void ThenTheSecondaryImplementationServiceDescriptorIsReturned()
+        {
+            ServiceDeclaration serviceDeclaration = result.Single(x => x.ServiceType == typeof(ISecondaryTestInterface));
+            Assert.That(serviceDeclaration.DeclaringType, Is.EqualTo(typeof(TestImplementation)));
+            Assert.That(serviceDeclaration.Scope, Is.EqualTo(ServiceScope.Singleton));
         }
     }
 }

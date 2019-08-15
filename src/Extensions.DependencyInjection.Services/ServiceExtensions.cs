@@ -55,8 +55,8 @@ namespace Extensions.DependencyInjection.Services
             Type[] types = assembly.GetExportedTypes();
             foreach (Type type in types)
             {
-                ServiceAttribute serviceAttribute = (ServiceAttribute)type.GetCustomAttribute(typeof(ServiceAttribute));
-                if (serviceAttribute != null)
+                IEnumerable<ServiceAttribute> serviceAttributes = (IEnumerable<ServiceAttribute>)type.GetCustomAttributes(typeof(ServiceAttribute));
+                foreach (ServiceAttribute serviceAttribute in serviceAttributes)
                     serviceDeclarations.Add(new ServiceDeclaration(serviceAttribute.Type, type, serviceAttribute.Scope));
             }
 
