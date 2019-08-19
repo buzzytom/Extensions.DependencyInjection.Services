@@ -14,12 +14,12 @@
     <RepositoryUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services</RepositoryUrl>
     <RepositoryType />
     <PackageTags>Extensions Dependency Injection Services Asp Net Core Net Standard</PackageTags>
-    <PackageReleaseNotes>Changed the ServiceAttribute to allow multiple instances of the attribute to be attached to classes.</PackageReleaseNotes>
+    <PackageReleaseNotes>Changed RegisterServices to allow multiple Service attributes on service class implementations.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <PackageIconUrl>https://avatars0.githubusercontent.com/u/24457121</PackageIconUrl>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
-    <FileVersion>1.0.3.0</FileVersion>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <FileVersion>1.0.4.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
