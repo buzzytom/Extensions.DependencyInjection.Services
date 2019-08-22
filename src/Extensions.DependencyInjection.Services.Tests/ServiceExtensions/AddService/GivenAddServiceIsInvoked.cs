@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Extensions.DependencyInjection.Services.Tests
 {
@@ -22,8 +23,14 @@ namespace Extensions.DependencyInjection.Services.Tests
         [OneTimeSetUp]
         public void Setup()
         {
+            IEnumerable<ServiceDescriptor> serviceDescriptors = new ServiceDescriptor[0];
+
             services = new Mock<IServiceCollection>();
-            ServiceDeclaration declaration = new ServiceDeclaration(typeof(ITestInterface), typeof(TestImplementation), declartionScope);
+            services
+                .Setup(instance => instance.GetEnumerator())
+                .Returns(serviceDescriptors.GetEnumerator());
+
+            ServiceDeclaration declaration = new ServiceDeclaration(typeof(ITransientInterface), typeof(TestImplementation), declartionScope);
 
             ServiceExtensions.AddService(services.Object, declaration);
         }
@@ -33,7 +40,7 @@ namespace Extensions.DependencyInjection.Services.Tests
         {
             services.Verify(instance => instance.Add(It.Is<ServiceDescriptor>(x =>
                 x.Lifetime == expectedLifetime &&
-                x.ServiceType == typeof(ITestInterface) &&
+                x.ServiceType == typeof(ITransientInterface) &&
                 x.ImplementationType == typeof(TestImplementation))), Times.Once);
         }
     }

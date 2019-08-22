@@ -11,7 +11,7 @@ namespace Extensions.DependencyInjection.Services.Tests
         [OneTimeSetUp]
         public void Setup()
         {
-            declaration = new ServiceDeclaration(typeof(ITestInterface), typeof(TestImplementation), ServiceScope.Scoped);
+            declaration = new ServiceDeclaration(typeof(ITransientInterface), typeof(TestImplementation), ServiceScope.Scoped);
         }
 
         [Test]

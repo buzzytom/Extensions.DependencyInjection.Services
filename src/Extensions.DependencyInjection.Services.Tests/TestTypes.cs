@@ -1,20 +1,25 @@
 ﻿namespace Extensions.DependencyInjection.Services.Tests
 {
-    public interface ITestInterface
+    public interface ITransientInterface
     {
     }
 
-    public interface ISecondaryTestInterface
+    public interface ISingletonTestInterface
     {
     }
 
-    public abstract class ATestImplementation : ITestInterface, ISecondaryTestInterface
+    public interface ISecondSingletonTestInterface
     {
     }
 
-    [Service(typeof(ITestInterface), ServiceScope.Transient)]
-    [Service(typeof(ISecondaryTestInterface), ServiceScope.Singleton)]
-    public class TestImplementation : ATestImplementation
+    public abstract class TestImplementationBase : ITransientInterface, ISingletonTestInterface, ISecondSingletonTestInterface
+    {
+    }
+
+    [Service(typeof(ITransientInterface), ServiceScope.Transient)]
+    [Service(typeof(ISingletonTestInterface), ServiceScope.Singleton)]
+    [Service(typeof(ISecondSingletonTestInterface), ServiceScope.Singleton)]
+    public class TestImplementation : TestImplementationBase
     {
     }
 
