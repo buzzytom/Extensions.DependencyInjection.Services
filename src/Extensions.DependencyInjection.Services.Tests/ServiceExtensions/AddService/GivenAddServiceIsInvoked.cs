@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Extensions.DependencyInjection.Services.Tests
 {
@@ -22,7 +23,13 @@ namespace Extensions.DependencyInjection.Services.Tests
         [OneTimeSetUp]
         public void Setup()
         {
+            IEnumerable<ServiceDescriptor> serviceDescriptors = new ServiceDescriptor[0];
+
             services = new Mock<IServiceCollection>();
+            services
+                .Setup(instance => instance.GetEnumerator())
+                .Returns(serviceDescriptors.GetEnumerator());
+
             ServiceDeclaration declaration = new ServiceDeclaration(typeof(ITransientInterface), typeof(TestImplementation), declartionScope);
 
             ServiceExtensions.AddService(services.Object, declaration);

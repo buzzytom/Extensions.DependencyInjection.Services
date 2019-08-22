@@ -80,7 +80,15 @@ namespace Extensions.DependencyInjection.Services
             else if (declaration.Scope == ServiceScope.Transient)
                 services.AddTransient(declaration.ServiceType, declaration.DeclaringType);
             else if (declaration.Scope == ServiceScope.Singleton)
-                services.AddSingleton(declaration.ServiceType, declaration.DeclaringType);
+            {
+                ServiceDescriptor existingServiceDescription = services.FirstOrDefault(x =>
+                    x.Lifetime == ServiceLifetime.Singleton &&
+                    x.ImplementationType == declaration.DeclaringType);
+                if (existingServiceDescription == null)
+                    services.AddSingleton(declaration.ServiceType, declaration.DeclaringType);
+                else
+                    services.AddSingleton(declaration.ServiceType, provider => provider.GetService(existingServiceDescription.ServiceType));
+            }
         }
     }
 }
