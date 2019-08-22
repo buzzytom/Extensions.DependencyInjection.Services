@@ -23,7 +23,7 @@ namespace Extensions.DependencyInjection.Services.Tests
         public void Setup()
         {
             services = new Mock<IServiceCollection>();
-            ServiceDeclaration declaration = new ServiceDeclaration(typeof(ITestInterface), typeof(TestImplementation), declartionScope);
+            ServiceDeclaration declaration = new ServiceDeclaration(typeof(ITransientInterface), typeof(TestImplementation), declartionScope);
 
             ServiceExtensions.AddService(services.Object, declaration);
         }
@@ -33,7 +33,7 @@ namespace Extensions.DependencyInjection.Services.Tests
         {
             services.Verify(instance => instance.Add(It.Is<ServiceDescriptor>(x =>
                 x.Lifetime == expectedLifetime &&
-                x.ServiceType == typeof(ITestInterface) &&
+                x.ServiceType == typeof(ITransientInterface) &&
                 x.ImplementationType == typeof(TestImplementation))), Times.Once);
         }
     }

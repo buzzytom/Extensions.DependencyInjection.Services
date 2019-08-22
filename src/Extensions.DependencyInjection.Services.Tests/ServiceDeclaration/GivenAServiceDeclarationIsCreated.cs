@@ -23,29 +23,29 @@ namespace Extensions.DependencyInjection.Services.Tests
         [Test]
         public void WithAnInvalidTypeConfiguration_ThenAnExceptionIsThrown()
         {
-            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITestInterface), typeof(NotAnImplementation), ServiceScope.Singleton));
+            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITransientInterface), typeof(NotAnImplementation), ServiceScope.Singleton));
             Assert.AreEqual("A service declaration can not be made for 'NotAnImplementation' because it cannot be assigned to 'ITestInterface'.", exception.Message);
         }
 
         [Test]
         public void WithAnInterfaceDeclaringType_ThenAnExceptionIsThrown()
         {
-            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITestInterface), typeof(ITestInterface), ServiceScope.Singleton));
+            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITransientInterface), typeof(ITransientInterface), ServiceScope.Singleton));
             Assert.AreEqual("A service declaration can not be made for an interface type 'ITestInterface'.", exception.Message);
         }
 
         [Test]
         public void WithAnAbstractDeclaringType_ThenAnExceptionIsThrown()
         {
-            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITestInterface), typeof(ATestImplementation), ServiceScope.Singleton));
+            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITransientInterface), typeof(ATestImplementation), ServiceScope.Singleton));
             Assert.AreEqual("A service declaration can not be made for an abstract type 'ATestImplementation'.", exception.Message);
         }
 
         [Test]
         public void WithValidParameters_ThenThePropertiesMapVerbatim()
         {
-            ServiceDeclaration serviceDeclaration = new ServiceDeclaration(typeof(ITestInterface), typeof(TestImplementation), ServiceScope.Singleton);
-            Assert.AreEqual(typeof(ITestInterface), serviceDeclaration.ServiceType);
+            ServiceDeclaration serviceDeclaration = new ServiceDeclaration(typeof(ITransientInterface), typeof(TestImplementation), ServiceScope.Singleton);
+            Assert.AreEqual(typeof(ITransientInterface), serviceDeclaration.ServiceType);
             Assert.AreEqual(typeof(TestImplementation), serviceDeclaration.DeclaringType);
             Assert.AreEqual(ServiceScope.Singleton, serviceDeclaration.Scope);
         }

@@ -14,7 +14,7 @@ namespace Extensions.DependencyInjection.Services.Tests
         {
             subject = new Mock<IServiceCollection>();
 
-            ServiceExtensions.RegisterServices(subject.Object, new[] { typeof(ITestInterface).Assembly });
+            ServiceExtensions.RegisterServices(subject.Object, new[] { typeof(ITransientInterface).Assembly });
         }
 
         [Test]
@@ -22,7 +22,7 @@ namespace Extensions.DependencyInjection.Services.Tests
         {
             subject.Verify(instance => instance.Add(It.Is<ServiceDescriptor>(x =>
                 x.Lifetime == ServiceLifetime.Transient &&
-                x.ServiceType == typeof(ITestInterface) &&
+                x.ServiceType == typeof(ITransientInterface) &&
                 x.ImplementationType == typeof(TestImplementation))), Times.Once);
         }
     }

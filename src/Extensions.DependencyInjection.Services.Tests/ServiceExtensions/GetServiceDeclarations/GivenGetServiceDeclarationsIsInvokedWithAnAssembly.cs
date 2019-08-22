@@ -28,7 +28,7 @@ namespace Extensions.DependencyInjection.Services.Tests
         [Test]
         public void ThenTheTestImplementationServiceDescriptorIsReturned()
         {
-            ServiceDeclaration serviceDeclaration = result.Single(x => x.ServiceType == typeof(ITestInterface));
+            ServiceDeclaration serviceDeclaration = result.Single(x => x.ServiceType == typeof(ITransientInterface));
             Assert.That(serviceDeclaration.DeclaringType, Is.EqualTo(typeof(TestImplementation)));
             Assert.That(serviceDeclaration.Scope, Is.EqualTo(ServiceScope.Transient));
         }
@@ -36,7 +36,7 @@ namespace Extensions.DependencyInjection.Services.Tests
         [Test]
         public void ThenTheSecondaryImplementationServiceDescriptorIsReturned()
         {
-            ServiceDeclaration serviceDeclaration = result.Single(x => x.ServiceType == typeof(ISecondaryTestInterface));
+            ServiceDeclaration serviceDeclaration = result.Single(x => x.ServiceType == typeof(ISingletonTestInterface));
             Assert.That(serviceDeclaration.DeclaringType, Is.EqualTo(typeof(TestImplementation)));
             Assert.That(serviceDeclaration.Scope, Is.EqualTo(ServiceScope.Singleton));
         }
