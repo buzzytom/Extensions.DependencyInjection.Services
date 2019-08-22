@@ -24,21 +24,21 @@ namespace Extensions.DependencyInjection.Services.Tests
         public void WithAnInvalidTypeConfiguration_ThenAnExceptionIsThrown()
         {
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITransientInterface), typeof(NotAnImplementation), ServiceScope.Singleton));
-            Assert.AreEqual("A service declaration can not be made for 'NotAnImplementation' because it cannot be assigned to 'ITestInterface'.", exception.Message);
+            Assert.AreEqual("A service declaration can not be made for 'NotAnImplementation' because it cannot be assigned to 'ITransientInterface'.", exception.Message);
         }
 
         [Test]
         public void WithAnInterfaceDeclaringType_ThenAnExceptionIsThrown()
         {
             InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITransientInterface), typeof(ITransientInterface), ServiceScope.Singleton));
-            Assert.AreEqual("A service declaration can not be made for an interface type 'ITestInterface'.", exception.Message);
+            Assert.AreEqual("A service declaration can not be made for an interface type 'ITransientInterface'.", exception.Message);
         }
 
         [Test]
         public void WithAnAbstractDeclaringType_ThenAnExceptionIsThrown()
         {
-            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITransientInterface), typeof(ATestImplementation), ServiceScope.Singleton));
-            Assert.AreEqual("A service declaration can not be made for an abstract type 'ATestImplementation'.", exception.Message);
+            InvalidOperationException exception = Assert.Throws<InvalidOperationException>(() => new ServiceDeclaration(typeof(ITransientInterface), typeof(TestImplementationBase), ServiceScope.Singleton));
+            Assert.AreEqual("A service declaration can not be made for an abstract type 'TestImplementationBase'.", exception.Message);
         }
 
         [Test]

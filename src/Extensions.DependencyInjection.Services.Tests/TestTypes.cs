@@ -8,13 +8,18 @@
     {
     }
 
-    public abstract class ATestImplementation : ITransientInterface, ISingletonTestInterface
+    public interface ISecondSingletonTestInterface
+    {
+    }
+
+    public abstract class TestImplementationBase : ITransientInterface, ISingletonTestInterface, ISecondSingletonTestInterface
     {
     }
 
     [Service(typeof(ITransientInterface), ServiceScope.Transient)]
     [Service(typeof(ISingletonTestInterface), ServiceScope.Singleton)]
-    public class TestImplementation : ATestImplementation
+    [Service(typeof(ISecondSingletonTestInterface), ServiceScope.Singleton)]
+    public class TestImplementation : TestImplementationBase
     {
     }
 
