@@ -14,12 +14,12 @@
     <RepositoryUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services</RepositoryUrl>
     <RepositoryType />
     <PackageTags>Extensions Dependency Injection Services Asp Net Core Net Standard</PackageTags>
-    <PackageReleaseNotes>Changing the behaviour of service injection in the event that there are multiple singleton service attributes on a single class implementation so that they now all provide the same instance.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixing an edge case condition where identical singleton registrations would cause a stack overflow exception.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.5</Version>
+    <Version>1.0.6</Version>
     <PackageIconUrl>https://avatars0.githubusercontent.com/u/24457121</PackageIconUrl>
-    <AssemblyVersion>1.0.5.0</AssemblyVersion>
-    <FileVersion>1.0.5.0</FileVersion>
+    <AssemblyVersion>1.0.6.0</AssemblyVersion>
+    <FileVersion>1.0.6.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
