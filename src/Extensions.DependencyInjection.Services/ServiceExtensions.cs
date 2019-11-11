@@ -83,7 +83,9 @@ namespace Extensions.DependencyInjection.Services
             {
                 ServiceDescriptor existingServiceDescription = services.FirstOrDefault(x =>
                     x.Lifetime == ServiceLifetime.Singleton &&
-                    x.ImplementationType == declaration.DeclaringType);
+                    x.ImplementationType == declaration.DeclaringType &&
+                    x.ServiceType != declaration.ServiceType);
+
                 if (existingServiceDescription == null)
                     services.AddSingleton(declaration.ServiceType, declaration.DeclaringType);
                 else
