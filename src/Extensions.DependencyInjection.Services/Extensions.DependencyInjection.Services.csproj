@@ -9,21 +9,29 @@
     <Company>Thomas Williams</Company>
     <Description>An extension for Microsoft.Extensions.DependencyInjection allowing classes to be decorated with [Service] for quick and easy dependency registration.</Description>
     <Copyright>© Thomas Williams 2018</Copyright>
-    <PackageLicenseUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services/src/Extensions.DependencyInjection.Services</PackageProjectUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services</PackageProjectUrl>
     <RepositoryUrl>https://github.com/buzzytom/Extensions.DependencyInjection.Services</RepositoryUrl>
     <RepositoryType />
     <PackageTags>Extensions Dependency Injection Services Asp Net Core Net Standard</PackageTags>
-    <PackageReleaseNotes>Fixing an edge case condition where identical singleton registrations would cause a stack overflow exception.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixing the project link.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <PackageIconUrl>https://avatars0.githubusercontent.com/u/24457121</PackageIconUrl>
-    <AssemblyVersion>1.0.6.0</AssemblyVersion>
-    <FileVersion>1.0.6.0</FileVersion>
+    <AssemblyVersion>1.0.7.0</AssemblyVersion>
+    <FileVersion>1.0.7.0</FileVersion>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
